@@ -13,5 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("PC", "테스트",);
         Log.d("PC", "테스트",);
+        Log.d("PC", "테스트",);
     }
 }
