@@ -13,16 +13,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this,MainPage.class);
-                startActivity(intent);
-            }
-        },2000);
     }
 }
