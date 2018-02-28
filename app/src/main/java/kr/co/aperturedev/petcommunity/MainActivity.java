@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import kr.co.aperturedev.petcommunity.view.activitys.SocialLoginAcvtivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,15 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this,MainPage.class);
-                startActivity(intent);
-            }
-        },2000);
+        // 소셜 로그인 화면을 연다.
+        Intent openSocialLogin = new Intent(this, SocialLoginAcvtivity.class);
+        startActivity(openSocialLogin);
     }
 }
