@@ -31,7 +31,7 @@
             android:layout_marginRight="12dp"
             android:text="@string/maching_start_match"
             android:textColor="@color/default_white"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <!-- 03/01 2018 매칭 등록 -->
         <Button
@@ -43,7 +43,7 @@
             android:layout_marginRight="24dp"
             android:text="@string/maching_regist_match"
             android:textColor="@color/default_white"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
