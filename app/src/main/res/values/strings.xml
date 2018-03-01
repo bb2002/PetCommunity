@@ -2,9 +2,11 @@
     <string name="app_name">애견 커뮤니티</string>
 
     <!-- Mathcing Main Activity -->
-    <string name="maching_start_match">애견 매칭 시작</string>
-    <string name="maching_regist_match">애견 등록</string>
+    <string name="matching_start_match">애견 매칭 시작</string>
+    <string name="matching_regist_match">애견 등록</string>
 
     <string name="matching_bottom_content1">현재 </string>
     <string name="matching_bottom_content2">마리의 애견이 매칭을 기다리고 있습니다.</string>
+
+    <string name="default_now_matching">Start matching...</string>
 </resources>
