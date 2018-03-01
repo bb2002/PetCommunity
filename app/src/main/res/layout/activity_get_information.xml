@@ -88,73 +88,46 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="병원" />
+
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine" />
-
-            <EditText
-                android:id="@+id/editText2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine" />
-
-            <EditText
-                android:id="@+id/editText3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine" />
-
-            <ViewAnimator
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/ic_launcher" />
-
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/ic_launcher" />
-            </ViewAnimator>
-
-            <EditText
-                android:id="@+id/editText6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine" />
-
-            <EditText
-                android:id="@+id/editText7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine" />
-
-            <EditText
-                android:id="@+id/editText8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine" />
-
-            <ImageButton
-                android:id="@+id/imageButton4"
+            <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@mipmap/ic_launcher" />
+
+            <WebView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/cafeWeb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/ic_launcher" />
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
