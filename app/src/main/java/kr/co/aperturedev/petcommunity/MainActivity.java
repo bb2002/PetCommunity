@@ -6,6 +6,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+
+import kr.co.aperturedev.petcommunity.view.activitys.MatchingActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,5 +16,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main2);
+    }
+
+    public void goMatching(View v) {
+        Intent intent = new Intent(this, MatchingActivity.class);
+        startActivity(intent);
     }
 }

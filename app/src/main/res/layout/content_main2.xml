@@ -37,6 +37,7 @@
                         android:id="@+id/dogMatching"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="goMatching"
                         android:text="애견커플매칭" />
 
                     <Button

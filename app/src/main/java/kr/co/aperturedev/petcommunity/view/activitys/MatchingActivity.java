@@ -25,6 +25,7 @@ public class MatchingActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_macthing);
+        getSupportActionBar().hide();
 
         // 개체 참조
         registedCount = findViewById(R.id.matching_registed_count);
@@ -54,6 +55,9 @@ public class MatchingActivity extends AppCompatActivity {
                     // 애견 매칭을 선택
                     this.progressMgr.setMessage(getString(R.string.default_now_matching));
                     this.progressMgr.enable();
+
+                    // 매칭 테스크 구동
+
                     break;
                 case R.id.matching_regist_pet:
                     // 내 팻 등록 버튼
