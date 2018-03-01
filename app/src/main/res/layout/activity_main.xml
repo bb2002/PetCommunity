@@ -46,7 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="추천" />
+                        android:text="정보추천" />
 
                 </LinearLayout>
             </HorizontalScrollView>
