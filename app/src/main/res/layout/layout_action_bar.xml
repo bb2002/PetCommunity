@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="55dp"
     android:background="@color/matching_main_color">
@@ -9,8 +10,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/action_bar_title"
         android:text="견생연분"
+        android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textColor="@color/default_white"
         android:textStyle="bold"/>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="?attr/homeAsUpIndicator" />
+
 </RelativeLayout>

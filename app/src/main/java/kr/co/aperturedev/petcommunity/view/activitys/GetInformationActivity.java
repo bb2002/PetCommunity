@@ -14,6 +14,7 @@ public class GetInformationActivity extends AppCompatActivity {
     private WebSettings webSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //게시판보여주기
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_information);
       //  WebView webView=(WebView)findViewById(R.id.cafeWeb);

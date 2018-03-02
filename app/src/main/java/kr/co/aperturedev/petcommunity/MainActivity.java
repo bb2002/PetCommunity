@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ViewFlipper;
 
 import kr.co.aperturedev.petcommunity.view.activitys.DiaryActivity;
@@ -16,38 +17,54 @@ import kr.co.aperturedev.petcommunity.view.activitys.MatchingActivity;
 
 public class MainActivity extends AppCompatActivity {
     ViewFlipper viewFlipper;
+    WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main2);
+        //뷰플리퍼실행
         viewFlipper = (ViewFlipper)findViewById(R.id.bannerView);
         viewFlipper.setFlipInterval(3000);
-        viewFlipper.startFlipping();
+        viewFlipper.startFlipping(); //뷰플리퍼3초간격슬라이드
+
     }
 
     public void goMatching(View v) {
+        //매칭버튼누를때
         Intent intent = new Intent(this, MatchingActivity.class);
         startActivity(intent);
+        finish();//매칭으로이동
     }
     public void goDiary(View v) {
+        //다이어리버튼누를때
         Intent intent = new Intent(this, DiaryActivity.class);
         startActivity(intent);
+        finish();//다이어리로이동
     }
     public void goRecommend(View v) {
+        //추천버튼누를때
         Intent intent = new Intent(this, GetInformationActivity.class);
         startActivity(intent);
+        finish();//추천으로이동
     }
     public void banner1Click(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("www.goldntree.co.kr"));
-        startActivity(intent);
+        //첫배너클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.goldntree.co.kr"));
+        startActivity(intent);//웹띄우기
     }
     public void banner2Click(View v) {
+        //둘째배너클릭
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.goldntree.co.kr/board/product/list.html?board_no=6"));
-        startActivity(intent);
+        startActivity(intent);//웹띄우기
     }
     public void banner3Click(View v) {
+        //세번째배너클릭
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.goldntree.co.kr/board/free/list.html?board_no=1"));
-        startActivity(intent);
+        startActivity(intent);//웹띄우기
+    }
+    public void textClick(View v) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.goldntree.co.kr/board/free/list.html?board_no=1"));
+        startActivity(intent);//웹띄우기
     }
 }
