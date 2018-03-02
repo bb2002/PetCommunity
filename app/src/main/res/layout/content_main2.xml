@@ -74,30 +74,26 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="banner1Click"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/banner1" />
+                    android:scaleType="fitXY" />
                 <ImageButton
                     android:id="@+id/banner2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:onClick="banner2Click"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/banner2" />
+                    android:scaleType="fitXY" />
                 <ImageButton
                     android:id="@+id/banner3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:onClick="banner3Click"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/banner3" />
+                    android:scaleType="fitXY" />
 
             </ViewFlipper>
 
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_width="match_parent"

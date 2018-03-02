@@ -8,6 +8,36 @@
         android:layout_width="match_parent"
         android:layout_height="55dp" />
 
+    <!-- 03/01 2018 카운트 뷰어 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:id="@+id/matching_bottom_container"
+        android:layout_alignParentBottom="true"
+        android:background="@color/matching_submain_color"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/matching_bottom_content1"
+            android:textColor="@color/default_white"
+            android:layout_marginRight="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/matching_registed_count"
+            android:text="0"
+            android:textColor="@color/default_white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/matching_bottom_content2"
+            android:textColor="@color/default_white"/>
+    </LinearLayout>
+
     <!-- 03/01 2018 매칭 액티비티 버튼 컨테이너 -->
 
     <LinearLayout
@@ -45,35 +75,5 @@
             android:text="@string/matching_regist_match"
             android:textColor="@color/default_white"
             android:textSize="12sp" />
-    </LinearLayout>
-
-    <!-- 03/01 2018 카운트 뷰어 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:id="@+id/matching_bottom_container"
-        android:layout_alignParentBottom="true"
-        android:background="@color/matching_submain_color"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/matching_bottom_content1"
-            android:textColor="@color/default_white"
-            android:layout_marginRight="4dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/matching_registed_count"
-            android:text="0"
-            android:textColor="@color/default_white"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/matching_bottom_content2"
-            android:textColor="@color/default_white"/>
     </LinearLayout>
 </RelativeLayout>

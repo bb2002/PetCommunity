@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.co.aperturedev.petcommunity">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,6 +28,8 @@
             android:exported="true"/>
         <activity android:name=".view.activitys.DiaryActivity"
             android:exported="true"/>
+        <activity android:name=".view.activitys.RegistPetActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

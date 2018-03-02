@@ -1,6 +1,7 @@
 package kr.co.aperturedev.petcommunity.view.activitys;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +62,8 @@ public class MatchingActivity extends AppCompatActivity {
                     break;
                 case R.id.matching_regist_pet:
                     // 내 팻 등록 버튼
+                    Intent intent = new Intent(getApplicationContext(), RegistPetActivity.class);
+                    startActivity(intent);
                     break;
             }
         }
