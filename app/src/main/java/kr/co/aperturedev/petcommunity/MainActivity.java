@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         titles1="";
         num=0;
         for(Element element:element1) {
-            titles1+= num+element.text()+"\n";
+            titles1 += num+element.text()+"\n";
             num++;
             if(num==10)
                 break;
