@@ -29,19 +29,28 @@ public class MainActivity extends AppCompatActivity {
     TextView board1View;
     Document board1;
     Elements element1;
+    String titles1="";
+    int num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main2);
         try {
             board1 = Jsoup.connect("http://www.goldntree.co.kr/board/free/list.html?board_no=1").get();
-            element1 = board1.select("span.subject");
+            element1 = board1.select("td.subject");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        titles1="";
+        num=0;
+        for(Element element:element1) {
+            titles1+= num+element.text()+"\n";
+            num++;
+            if(num==10)
+                break;
+        }
         board1View = (TextView)findViewById(R.id.mainNumber);
-        board1View.setText(element1.text());
+        board1View.setText(titles1);
         //뷰플리퍼실행
         viewFlipper = (ViewFlipper)findViewById(R.id.bannerView);
         viewFlipper.setFlipInterval(3000);
