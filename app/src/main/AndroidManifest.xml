@@ -18,9 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activitys.SocialLoginAcvtivity" />
-
+        <activity android:name=".view.activitys.GetInformationActivity" />
         <activity android:name=".view.activitys.MatchingActivity" />
+        <activity android:name=".view.activitys.SocialLoginActivity" />
+        <activity android:name=".view.activitys.DiaryActivity"/>
     </application>
 
 </manifest>
