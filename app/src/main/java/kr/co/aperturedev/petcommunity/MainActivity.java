@@ -1,6 +1,7 @@
 package kr.co.aperturedev.petcommunity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main2);
         viewFlipper = (ViewFlipper)findViewById(R.id.bannerView);
-        viewFlipper.setFlipInterval(1500);
+        viewFlipper.setFlipInterval(3000);
         viewFlipper.startFlipping();
     }
 
@@ -35,6 +36,18 @@ public class MainActivity extends AppCompatActivity {
     }
     public void goRecommend(View v) {
         Intent intent = new Intent(this, GetInformationActivity.class);
+        startActivity(intent);
+    }
+    public void banner1Click(View v) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("www.goldntree.co.kr"));
+        startActivity(intent);
+    }
+    public void banner2Click(View v) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.goldntree.co.kr/board/product/list.html?board_no=6"));
+        startActivity(intent);
+    }
+    public void banner3Click(View v) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.goldntree.co.kr/board/free/list.html?board_no=1"));
         startActivity(intent);
     }
 }

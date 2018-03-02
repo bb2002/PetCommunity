@@ -68,23 +68,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/banner1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="banner1Click"
+                    android:scaleType="fitXY"
                     app:srcCompat="@mipmap/ic_launcher" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/banner2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/rounded_blue" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="banner2Click"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/ic_menu_camera" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/banner3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="banner3Click"
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/rounded_green" />
             </ViewFlipper>
 
