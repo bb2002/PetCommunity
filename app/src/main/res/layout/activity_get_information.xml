@@ -24,13 +24,6 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/my"
-                        style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="my" />
-
-                    <Button
                         android:id="@+id/dogMatching"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="match_parent"
@@ -71,7 +64,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="애견카페" />
+                        android:text="애견카페"
+                        android:textStyle="bold"/>
 
                     <Button
                         android:id="@+id/dogCourse"
@@ -79,7 +73,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="산책코스" />
+                        android:text="산책코스"
+                        android:textStyle="bold"/>
 
                     <Button
                         android:id="@+id/dogStuff"
@@ -87,7 +82,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="용품" />
+                        android:text="용품"
+                        android:textStyle="bold"/>
 
                     <Button
                         android:id="@+id/dogHospital"
@@ -95,7 +91,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="병원" />
+                        android:text="병원"
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
             </HorizontalScrollView>

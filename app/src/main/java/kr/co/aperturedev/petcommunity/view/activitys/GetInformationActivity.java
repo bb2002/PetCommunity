@@ -16,7 +16,7 @@ public class GetInformationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_information);
-        WebView webView=(WebView)findViewById(R.id.cafeWeb);
+      //  WebView webView=(WebView)findViewById(R.id.cafeWeb);
         webView.setWebViewClient(new WebViewClient());
         webSettings = webView.getSettings();
         webView.loadUrl("http://www.goldntree.co.kr");

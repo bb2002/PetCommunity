@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import kr.co.aperturedev.petcommunity.view.activitys.DiaryActivity;
+import kr.co.aperturedev.petcommunity.view.activitys.GetInformationActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.MatchingActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void goMatching(View v) {
         Intent intent = new Intent(this, MatchingActivity.class);
+        startActivity(intent);
+    }
+    public void goDiary(View v) {
+        Intent intent = new Intent(this, DiaryActivity.class);
+        startActivity(intent);
+    }
+    public void goRecommend(View v) {
+        Intent intent = new Intent(this, GetInformationActivity.class);
         startActivity(intent);
     }
 }
