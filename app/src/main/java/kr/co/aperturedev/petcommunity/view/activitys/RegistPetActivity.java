@@ -26,6 +26,7 @@ public class RegistPetActivity extends PageActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist_matching);
+        getSupportActionBar().hide();
 
         // 개체 찾기
         this.contentView = findViewById(R.id.registmatch_container);

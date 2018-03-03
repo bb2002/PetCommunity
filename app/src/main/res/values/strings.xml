@@ -9,4 +9,17 @@
     <string name="matching_bottom_content2">마리의 애견이 매칭을 기다리고 있습니다.</string>
 
     <string name="default_now_matching">Start matching...</string>
+    <string name="default_man">암컷</string>
+    <string name="default_woman">수컷</string>
+    <string name="default_next">다음</string>
+
+    <!-- Regist Pet Activity -->
+    <string name="registpet_activity_header1">애견 정보 입력</string>
+    <string name="registpet_activity_header2">사진 업로드</string>
+    <string name="registpet_activity_header3">주인 정보 입력</string>
+
+    <string name="registpet1_title">강아지에 대한 정보를 입력해주세요.</string>
+    <string name="registpet1_input_type">견종을 선택하세요.</string>
+    <string name="registpet1_name">강아지 이름</string>
+    <string name="registpet1_age">강아지 나이</string>
 </resources>
