@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import kr.co.aperturedev.petcommunity.R;
 import kr.co.aperturedev.petcommunity.view.activitys.pages.PageActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.pages.PageSuper;
+import kr.co.aperturedev.petcommunity.view.activitys.pages.registpet.RegistPetPage1;
 
 /**
  * Copyright(c) 2018 Saint software All rights reserved.
@@ -30,6 +31,8 @@ public class RegistPetActivity extends PageActivity {
         this.contentView = findViewById(R.id.registmatch_container);
         this.anime = AnimationUtils.loadAnimation(this, R.anim.view_move_right);
 
+        // 페이지 열기
+        switchPage(new RegistPetPage1(this, this));
     }
 
     @Override

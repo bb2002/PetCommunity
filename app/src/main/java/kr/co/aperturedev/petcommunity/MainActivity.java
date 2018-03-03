@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main2);
+
+        /*
+        메인스레드에서 네트워크 부분은 처리 하면 안됩니다.
+
         try {
             board1 = Jsoup.connect("http://www.goldntree.co.kr/board/free/list.html?board_no=1").get();
             element1 = board1.select("td.subject");
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         viewFlipper = (ViewFlipper)findViewById(R.id.bannerView);
         viewFlipper.setFlipInterval(3000);
         viewFlipper.startFlipping(); //뷰플리퍼3초간격슬라이드
-
+        */
     }
 
     public void goMatching(View v) {
