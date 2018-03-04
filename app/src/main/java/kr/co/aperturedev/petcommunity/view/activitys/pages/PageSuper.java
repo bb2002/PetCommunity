@@ -43,7 +43,7 @@ public class PageSuper extends RelativeLayout {
             생명주기 메서드
             재정의가 필수가 아닙니다.
          */
-    public void onShow(){};
-
-    public void onStop(){};
+    public void onShow(){};     // 이 화면이 보여질 때
+    public void onStop(){};     // 액티비티가 멈출 때
+    public void onResume(){};   // 액티비티가 띄워질때
 }

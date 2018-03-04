@@ -43,5 +43,25 @@ public class RegistPetActivity extends PageActivity {
         contentView.addView(page);
         this.nowPage = page;
         contentView.startAnimation(this.anime);
+
+        page.onShow();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(this.nowPage != null) {
+            this.nowPage.onResume();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if(this.nowPage != null) {
+            this.nowPage.onStop();
+        }
     }
 }

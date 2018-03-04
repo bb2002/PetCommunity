@@ -10,9 +10,16 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import java.util.ArrayList;
+
 import kr.co.aperturedev.petcommunity.R;
+import kr.co.aperturedev.petcommunity.modules.http.RequestHttpListener;
+import kr.co.aperturedev.petcommunity.modules.http.RequestHttpTask;
+import kr.co.aperturedev.petcommunity.modules.http.RequestURLs;
+import kr.co.aperturedev.petcommunity.modules.http.ResponseObject;
 import kr.co.aperturedev.petcommunity.view.activitys.pages.PageActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.pages.PageSuper;
+import kr.co.aperturedev.petcommunity.view.dialogs.progress.ProgressManager;
 
 /**
  * Created by 5252b on 2018-03-02.
@@ -43,12 +50,13 @@ public class RegistPetPage1 extends PageSuper {
         // 핸들링
         OnButtonClickListener btnClickHandler = new OnButtonClickListener();
         OnRadioSelectChangeListener radioClickHandler = new OnRadioSelectChangeListener();
-        EditTextTracker textTracker = new EditTextTracker();
+        EditTextTracker tracker = new EditTextTracker();
 
         this.selectType.setOnClickListener(btnClickHandler);
         this.nextButton.setOnClickListener(btnClickHandler);
         this.genContainer.setOnCheckedChangeListener(radioClickHandler);
-
+        this.dogName.addTextChangedListener(tracker);
+        this.dogAge.addTextChangedListener(tracker);
     }
 
     class OnButtonClickListener implements View.OnClickListener {
@@ -68,16 +76,15 @@ public class RegistPetPage1 extends PageSuper {
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             switch(checkedId) {
                 case R.id.registpet1_gen_man:
-                    Log.d("PC", "남자 선택");
                     break;
                 case R.id.registpet1_gen_woman:
-                    Log.d("PC", "여자 선택");
                     break;
             }
         }
     }
 
     class EditTextTracker implements TextWatcher {
+
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -86,11 +93,46 @@ public class RegistPetPage1 extends PageSuper {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+            // 입력값이 전혀 없을 경우
+            if(s.length() == 0) {
+                setEnableNextButton(false);
+                return;
+            }
         }
 
         @Override
-        public void afterTextChanged(Editable s) {
+        public void afterTextChanged(Editable s) {}
+    }
 
+    private void setEnableNextButton(boolean b) {
+        this.nextButton.setEnabled(b);
+    }
+
+
+    /*
+        03 04 2018
+        Http 요청 처리 관련
+     */
+    ProgressManager pm = null;
+    @Override
+    public void onShow() {
+        // 사용자에게 화면이 보여집니다.
+
+        // 프로그레스 바를 띄워 서버에서 다운로드 하게 합니다.
+        this.pm = new ProgressManager(getContext());
+        this.pm.setMessage(getControl().getString(R.string.default_process));
+        this.pm.enable();
+
+        RequestHttpTask task = new RequestHttpTask(RequestURLs.GET_PET_TYPES, new ArrayList<Object>(), getContext(), new RequestPetTypeListener());
+        task.execute();
+    }
+
+    class RequestPetTypeListener implements RequestHttpListener {
+        @Override
+        public void onResponse(ResponseObject result) {
+            pm.disable();
+
+            Log.d("PC", result.getRespObject().toString());
         }
     }
 }

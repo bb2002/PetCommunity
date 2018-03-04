@@ -12,6 +12,7 @@
     <string name="default_man">암컷</string>
     <string name="default_woman">수컷</string>
     <string name="default_next">다음</string>
+    <string name="default_process">처리 중...</string>
 
     <!-- Regist Pet Activity -->
     <string name="registpet_activity_header1">애견 정보 입력</string>

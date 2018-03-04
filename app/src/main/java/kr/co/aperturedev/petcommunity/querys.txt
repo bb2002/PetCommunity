@@ -1,2 +1,55 @@
 CREATE DATABASE petcommunity;
 
+/* 강아지 타입을 저장하는 테이블 */
+CREATE TABLE `tb_pettype_const` (
+_id int(11) NOT NULL AUTO_INCREMENT,
+pt_type varchar(20) NOT NULL,
+pt_uuid int (5) NOT NULL,
+PRIMARY KEY(_id)
+);
+
+/* 강아지 타입들, 필요에 따라 삭제 또는 추가 바람 */
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('선택 없슴', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('치와와', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('말티즈', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('미니어처 핀셔', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('파피용', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('포메라니안', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('푸들', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('시추', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('미니어처 슈나우저', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('요크셔 테리어', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('에어데일 테리어', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('스코티시 테리어', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('비글', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('닥스훈트', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('아프간하운드', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('그레이 하운드', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('바셋 하운드', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('코커스패니얼', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('리트리버', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('포인터', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('세터', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('비즐라', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('시베리안 허스키', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('알라스칸 말라뮤트', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('도베르만 핀셔', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('로트 와일러', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('버니즈 마운틴독', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('보더콜리', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('셔틀랜드 쉽독', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('웰시코기', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('저먼 셰퍼드', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('올드 잉글리시 쉽독', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('러프콜리', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('진돗개', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('삽살개', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('풍산개', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('불독', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('시바견', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('달마시안', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('비숑프리제', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('차우차우', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('잉글리쉬불독', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('프렌치불독', rand()*100000);
+INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('기타', rand()*100000);
