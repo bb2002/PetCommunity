@@ -103,7 +103,7 @@ public class RequestHttpTask extends AsyncTask<String, Void, ResponseObject> {
             /*
                 03 02 디버깅 전용 코드
              */
-            Log.d("PC", returnObj.toString());
+            // Log.d("PC", returnObj.toString());
 
             respObj.setRespObject(returnObj);
             respObj.setRespCode(ResponseObject.ResponseCodes.SUCCESS);

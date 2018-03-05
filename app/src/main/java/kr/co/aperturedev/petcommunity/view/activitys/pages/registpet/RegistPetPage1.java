@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -17,9 +22,11 @@ import kr.co.aperturedev.petcommunity.modules.http.RequestHttpListener;
 import kr.co.aperturedev.petcommunity.modules.http.RequestHttpTask;
 import kr.co.aperturedev.petcommunity.modules.http.RequestURLs;
 import kr.co.aperturedev.petcommunity.modules.http.ResponseObject;
+import kr.co.aperturedev.petcommunity.modules.obj.PetTypeObject;
 import kr.co.aperturedev.petcommunity.view.activitys.pages.PageActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.pages.PageSuper;
 import kr.co.aperturedev.petcommunity.view.dialogs.progress.ProgressManager;
+import kr.co.aperturedev.petcommunity.view.dialogs.window.custom.SelectPetTypeDialog;
 
 /**
  * Created by 5252b on 2018-03-02.
@@ -33,6 +40,12 @@ public class RegistPetPage1 extends PageSuper {
     EditText dogAge = null;
     RadioGroup genContainer = null;
     Button nextButton = null;
+
+    ArrayList<PetTypeObject> items = new ArrayList<>();
+
+
+    // 선택된 데이터들
+    PetTypeObject petType = null;
 
     public RegistPetPage1(Context context, PageActivity control) {
         super(context, control);
@@ -64,6 +77,8 @@ public class RegistPetPage1 extends PageSuper {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.registpet1_select_type:
+                    SelectPetTypeDialog dialog = new SelectPetTypeDialog(getControl(), items, new DialogCloseListener());
+                    dialog.show();
                     break;
                 case R.id.registpet1_next:
                     break;
@@ -104,6 +119,16 @@ public class RegistPetPage1 extends PageSuper {
         public void afterTextChanged(Editable s) {}
     }
 
+    class DialogCloseListener implements SelectPetTypeDialog.ICustomDialogEventListener {
+        @Override
+        public void onClose(PetTypeObject type) {
+            if(type != null) {
+                petType = type; // 팻을 선택했습니다. 완료됨.
+                selectType.setText(petType.getTypeName());
+            }
+        }
+    }
+
     private void setEnableNextButton(boolean b) {
         this.nextButton.setEnabled(b);
     }
@@ -132,7 +157,32 @@ public class RegistPetPage1 extends PageSuper {
         public void onResponse(ResponseObject result) {
             pm.disable();
 
-            Log.d("PC", result.getRespObject().toString());
+            // 요청 오류
+            if(result.getRespCode() != ResponseObject.ResponseCodes.SUCCESS) {
+                // 오류
+                Toast.makeText(getContext(), "Request failed.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            JSONObject resObj = result.getRespObject();
+
+            try {
+                JSONArray petNames = resObj.getJSONArray("pet-names");
+                JSONArray petUUIDs = resObj.getJSONArray("pet-uuids");
+
+                for(int i = 0; i < petNames.length(); i ++) {
+                    String name = petNames.getString(i);
+                    int uuid = petUUIDs.getInt(i);
+
+                    items.add(new PetTypeObject(name, uuid));
+                }
+            } catch(JSONException ex) {
+                ex.printStackTrace();
+                Toast.makeText(getContext(), "Internal server error", Toast.LENGTH_SHORT).show();
+            } catch(Exception ex2) {
+                ex2.printStackTrace();
+                Toast.makeText(getContext(), "Fatal error", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 public class ResponseObject {
     // 요청에 대한 결과값
-    enum ResponseCodes {
+    public enum ResponseCodes {
         SUCCESS,        // 성공
         NO_INTERNET,    // 인터넷 없슴
         EXCEPTION       // 예외 처리됨.
