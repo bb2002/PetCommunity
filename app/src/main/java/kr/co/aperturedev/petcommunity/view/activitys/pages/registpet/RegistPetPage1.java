@@ -81,6 +81,9 @@ public class RegistPetPage1 extends PageSuper {
                     dialog.show();
                     break;
                 case R.id.registpet1_next:
+                    if(isNotEmpty()) {
+                        getControl().switchPage(new RegistPetPage2(getContext(), getControl()));
+                    }
                     break;
             }
         }
@@ -150,6 +153,14 @@ public class RegistPetPage1 extends PageSuper {
 
         RequestHttpTask task = new RequestHttpTask(RequestURLs.GET_PET_TYPES, new ArrayList<Object>(), getContext(), new RequestPetTypeListener());
         task.execute();
+    }
+
+    private boolean isNotEmpty() {
+        if(petType == null) return false;
+        if(dogName.length() == 0) return false;
+        if(dogAge.length() == 0) return false;
+
+        return true;
     }
 
     class RequestPetTypeListener implements RequestHttpListener {

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     Elements element1;
     String titles1="";
     int num;
+
+    Button matchButton = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +44,18 @@ public class MainActivity extends AppCompatActivity {
         viewFlipper = (ViewFlipper)findViewById(R.id.bannerView);
         viewFlipper.setFlipInterval(3000);
         viewFlipper.startFlipping(); //뷰플리퍼3초간격슬라이드
+
+        this.matchButton = findViewById(R.id.dogMatching);
+        this.matchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 매칭버튼누를때
+                Intent intent = new Intent(getApplicationContext(), MatchingActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    protected void goMatching(View v) {
-        //매칭버튼누를때
-        Intent intent = new Intent(this, MatchingActivity.class);
-        startActivity(intent);
-        finish();//매칭으로이동
-    }
     protected void goDiary(View v) {
         //다이어리버튼누를때
         Intent intent = new Intent(this, DiaryActivity.class);
