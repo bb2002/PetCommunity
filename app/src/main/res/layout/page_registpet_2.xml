@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/default_white">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -40,22 +41,34 @@
         android:layout_height="wrap_content"
         android:id="@+id/registpet_2_container"
         android:orientation="vertical"
-        android:layout_below="@id/registpet_2_header">
-        <Button
-            android:layout_width="match_parent"
+        android:layout_below="@id/registpet_2_header"
+        android:gravity="center">
+        <ImageButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/upload_image_button"
-            android:text="파일을 업로드 합니다."/>
+            android:layout_margin="32dp"
+            android:paddingLeft="128dp"
+            android:paddingRight="128dp"
+            android:src="@drawable/ic_image"
+            android:scaleType="centerInside"
+            android:background="@color/default_white"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registpet2_upload_file"
+            android:gravity="center"
+            android:textStyle="bold"/>
     </LinearLayout>
 
-    <!--
     <Button
         android:id="@+id/registpet2_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="8dp"
+        android:visibility="invisible"
         android:background="@color/matching_green_color"
         android:text="@string/default_next"
-        android:textColor="#ffffff" /> -->
+        android:textColor="#ffffff" />
 </RelativeLayout>

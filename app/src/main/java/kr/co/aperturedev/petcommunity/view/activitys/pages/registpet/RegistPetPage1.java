@@ -83,6 +83,8 @@ public class RegistPetPage1 extends PageSuper {
                 case R.id.registpet1_next:
                     if(isNotEmpty()) {
                         getControl().switchPage(new RegistPetPage2(getContext(), getControl()));
+                    } else {
+                        Toast.makeText(getContext(), "모두 입력해 주세요.", Toast.LENGTH_SHORT).show();
                     }
                     break;
             }

@@ -56,8 +56,7 @@ public class ImageUploadTask extends AsyncTask<Void, Integer, Object[]> {
         super.onProgressUpdate(values);
 
         if(listener != null) {
-            Log.d("PC", fileSize + " / " + values[0]);
-            listener.onPacketSended(0);
+            listener.onPacketSended((int) (((double) values[0] / (double) fileSize) * 100));
         }
     }
 
@@ -67,7 +66,7 @@ public class ImageUploadTask extends AsyncTask<Void, Integer, Object[]> {
         Bitmap image 를 byte[] 으로 바꾼다.
          */
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        uploadImage.compress(Bitmap.CompressFormat.JPEG, 40, stream);
+        uploadImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] byteArray = stream.toByteArray();
 
         fileSize = byteArray.length;
@@ -126,7 +125,6 @@ public class ImageUploadTask extends AsyncTask<Void, Integer, Object[]> {
             int count = 0;
 
             while((len = imageStream.read(buff)) != -1) {
-                Log.d("PC", len + " UP");
 
                 dataDos.write(buff, 0, len);
                 int sended = dataDis.readInt();
@@ -139,7 +137,6 @@ public class ImageUploadTask extends AsyncTask<Void, Integer, Object[]> {
                 onProgressUpdate(uploadSize);   // 퍼센티지 업데이트
 
                 count ++;
-                Log.d("PC", count + "회 실행");
             }
 
             // 파일 업로드 완료.

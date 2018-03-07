@@ -1,5 +1,6 @@
 package kr.co.aperturedev.petcommunity.view.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +46,12 @@ public class RegistPetActivity extends PageActivity {
         contentView.startAnimation(this.anime);
 
         page.onShow();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        nowPage.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

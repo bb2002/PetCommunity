@@ -1,6 +1,7 @@
 package kr.co.aperturedev.petcommunity.view.activitys.pages;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -46,4 +47,5 @@ public class PageSuper extends RelativeLayout {
     public void onShow(){};     // 이 화면이 보여질 때
     public void onStop(){};     // 액티비티가 멈출 때
     public void onResume(){};   // 액티비티가 띄워질때
+    public void onActivityResult(int requestCode, int resultCode, Intent data){};   // 액티비티 응답
 }

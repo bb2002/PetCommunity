@@ -1,15 +1,21 @@
 package kr.co.aperturedev.petcommunity.view.activitys.pages.registpet;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import kr.co.aperturedev.petcommunity.R;
+import kr.co.aperturedev.petcommunity.modules.constant.QueryIDs;
+import kr.co.aperturedev.petcommunity.modules.lib.PermissionHelper;
 import kr.co.aperturedev.petcommunity.modules.uploader.ImageUploadListener;
 import kr.co.aperturedev.petcommunity.modules.uploader.ImageUploadTask;
 import kr.co.aperturedev.petcommunity.view.activitys.pages.PageActivity;
@@ -22,9 +28,9 @@ import kr.co.aperturedev.petcommunity.view.activitys.pages.PageSuper;
 public class RegistPetPage2 extends PageSuper {
     View v = null;
 
-    Button upload = null;
+    ImageButton upload = null;
 
-    public RegistPetPage2(Context context, PageActivity control) {
+    public RegistPetPage2(final Context context, PageActivity control) {
         super(context, control);
         setView(R.layout.page_registpet_2);
 
@@ -34,12 +40,17 @@ public class RegistPetPage2 extends PageSuper {
         this.upload.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap testImage = BitmapFactory.decodeResource(getControl().getResources(), R.drawable.test_2);
+                // 권한 확인
+                if(!PermissionHelper.checkPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    // 권한이 없다면 요청한다.
+                    PermissionHelper.requestPermission(getControl(), Manifest.permission.READ_EXTERNAL_STORAGE);
+                    return;
+                }
 
-                Toast.makeText(getContext(), "파일 업로드를 시작합니다.", Toast.LENGTH_SHORT).show();
-
-                ImageUploadTask task = new ImageUploadTask(testImage, new FileUploadHandler());
-                task.execute();
+                // 이미지를 직접 가져옵니다.
+                Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                Intent intent = new Intent(Intent.ACTION_PICK, uri);
+                getControl().startActivityForResult(intent, QueryIDs.SELECT_PICTURE_BROWSER);
             }
         });
     }
@@ -61,4 +72,31 @@ public class RegistPetPage2 extends PageSuper {
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Bitmap image = null;
+
+        if(data == null) return;
+
+        try {
+            switch (requestCode) {
+                case QueryIDs.SELECT_PICTURE_BROWSER:
+                    image = MediaStore.Images.Media.getBitmap(getControl().getContentResolver(), data.getData());
+                    break;
+                default:
+                    return;
+            }
+
+            // 이미지를 업로드 합시다.
+            ImageUploadTask uploadTask = new ImageUploadTask(image, new FileUploadHandler());
+            uploadTask.execute();
+
+            this.upload.setEnabled(false);
+        } catch(IOException iex) {
+            Toast.makeText(getContext(), "IOException! " + iex.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            Toast.makeText(getContext(), "Failed. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
 }
