@@ -58,7 +58,7 @@ public class RegistPetPage2 extends PageSuper {
     class FileUploadHandler implements ImageUploadListener {
         @Override
         public void onUploaded(String link) {
-            Log.d("PC", "업로드 성공 : " + link);
+            Log.d("PC", "업로드 성공!" + link);
         }
 
         @Override
@@ -91,7 +91,7 @@ public class RegistPetPage2 extends PageSuper {
             ImageUploadTask uploadTask = new ImageUploadTask(image, new FileUploadHandler());
             uploadTask.execute();
 
-            this.upload.setEnabled(false);
+            //this.upload.setEnabled(false);
         } catch(IOException iex) {
             Toast.makeText(getContext(), "IOException! " + iex.getMessage(), Toast.LENGTH_SHORT).show();
         } catch(Exception ex) {

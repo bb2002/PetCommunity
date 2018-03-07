@@ -9,6 +9,6 @@ public interface UploadHostConst {
     int DATA_PORT = 21014;	// 파일 전송 포트
     int INFO_PORT = 21015;	// 정보 포트
 
-    int TIME_OUT = 5000;    // 타임아웃
-    int PACKET_SIZE = 1024; // 패킷 크기
+    int TIME_OUT = 20000;    // 타임아웃
+    int PACKET_SIZE = 4096; // 패킷 크기
 }

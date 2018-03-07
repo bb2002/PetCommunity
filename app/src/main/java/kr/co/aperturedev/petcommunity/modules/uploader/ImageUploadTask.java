@@ -117,27 +117,22 @@ public class ImageUploadTask extends AsyncTask<Void, Integer, Object[]> {
             }
 
             // 업로드 가능, 파일을 업로드 한다.
-            int uploadSize = 0; // 업로드 한 크기
             ByteArrayInputStream imageStream = new ByteArrayInputStream(byteArray);
             byte[] buff = new byte[UploadHostConst.PACKET_SIZE];
-            int len;
+            int readCount = 0;
 
-            int count = 0;
+            while((readCount = imageStream.read(buff)) != -1) {
+                dataDos.write(buff, 0, readCount);
+                boolean send = dataDis.readInt() != 0;
 
-            while((len = imageStream.read(buff)) != -1) {
-
-                dataDos.write(buff, 0, len);
-                int sended = dataDis.readInt();
-
-                if(sended == 0) {
-                    Log.d("PC", "FAILED!");
+                if (!send) {
+                    Log.d("PC", "Packet send failed.");
                 }
-
-                uploadSize += UploadHostConst.PACKET_SIZE;
-                onProgressUpdate(uploadSize);   // 퍼센티지 업데이트
-
-                count ++;
             }
+
+            dataDos.flush();
+            dataDis.close();
+            dataDos.close();
 
             // 파일 업로드 완료.
             String uploadedName = infoDis.readUTF();
