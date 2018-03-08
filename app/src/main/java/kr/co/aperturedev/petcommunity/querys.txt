@@ -53,3 +53,19 @@ INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('차우차우', ran
 INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('잉글리쉬불독', rand()*100000);
 INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('프렌치불독', rand()*100000);
 INSERT INTO `tb_pettype_const` (`pt_type`, `pt_uuid`) VALUES('기타', rand()*100000);
+
+
+CREATE TABLE `tb_match_stack` (
+_id int(11) NOT NULL AUTO_INCREMENT,
+pet_admin_uuid VARCHAR(60) NOT NULL,
+pet_type int(5) NOT NULL,
+pet_name VARCHAR(15) NOT NULL,
+pet_age int(4) NOT NULL,
+pet_gender enum('man', 'woman') NOT NULL,
+pet_image VARCHAR(80) NOT NULL,
+pet_admin_tel VARCHAR(30) NOT NULL,
+match_ismatched enum('yes', 'no') NOT NULL DEFAULT 'NO',
+match_isgrant enum('yes', 'no') NOT NULL DEFAULT 'NO',
+created DATETIME NOT NULL,
+PRIMARY KEY(_id)
+);

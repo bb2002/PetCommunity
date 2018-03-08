@@ -40,6 +40,7 @@ public class RegistPetPage1 extends PageSuper {
     EditText dogAge = null;
     RadioGroup genContainer = null;
     Button nextButton = null;
+    boolean isMan = true;   // 기본값은 남자 이다.
 
     ArrayList<PetTypeObject> items = new ArrayList<>();
 
@@ -83,6 +84,17 @@ public class RegistPetPage1 extends PageSuper {
                 case R.id.registpet1_next:
                     if(isNotEmpty()) {
                         getControl().switchPage(new RegistPetPage2(getContext(), getControl()));
+
+                        // 입력값 저장
+                        /*
+                            사용자 로그인 후 고유 번호입니다.
+                            아직 로그인이 03.08 구현되지 않아 임시로 처리했습니다.
+                         */
+                        getControl().args.add("UUID_UUID_UUID_UUID");
+                        getControl().args.add(petType.getTypeUUID());
+                        getControl().args.add(dogName.getText().toString());
+                        getControl().args.add(Integer.parseInt(dogAge.getText().toString()));
+                        getControl().args.add(isMan);
                     } else {
                         Toast.makeText(getContext(), "모두 입력해 주세요.", Toast.LENGTH_SHORT).show();
                     }
@@ -96,8 +108,10 @@ public class RegistPetPage1 extends PageSuper {
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             switch(checkedId) {
                 case R.id.registpet1_gen_man:
+                    isMan = true;
                     break;
                 case R.id.registpet1_gen_woman:
+                    isMan = false;
                     break;
             }
         }

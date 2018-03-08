@@ -39,7 +39,8 @@
             android:exported="true" />
         <activity
             android:name=".view.activitys.RegistPetActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

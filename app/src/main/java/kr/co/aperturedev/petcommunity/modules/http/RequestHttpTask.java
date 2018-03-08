@@ -98,6 +98,7 @@ public class RequestHttpTask extends AsyncTask<String, Void, ResponseObject> {
             }
 
             // 응답을 받고, 처리 결과를 만든다.
+            Log.d("PC", builder.toString());
             JSONObject returnObj = new JSONObject(builder.toString());
 
             /*

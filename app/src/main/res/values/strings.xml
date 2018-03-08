@@ -29,4 +29,8 @@
     <string name="registpet1_age">강아지 나이</string>
 
     <string name="registpet2_upload_file">강아지 사진을 업로드 하세요.</string>
+
+    <string name="registpet3_title">주인님 전화번호를 입력해주세요.</string>
+    <string name="registpet3_tel">전화번호를 입력하세요.</string>
+    <string name="registpet3_msg">매칭이 되면 이 전화번호로 상대 주인이 전화를 걸 것입니다.\n정확하게 입력해주세요.</string>
 </resources>

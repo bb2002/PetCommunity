@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="matching_main_color">#2c3e50</color>
+    <color name="default_black">#222222</color>
     <color name="default_white">#ffffff</color>
     <color name="matching_green_color">#27ae60</color>
     <color name="matching_blue_color">#2980b9</color>

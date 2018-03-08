@@ -120,6 +120,7 @@ public class ImageUploadTask extends AsyncTask<Void, Integer, Object[]> {
             ByteArrayInputStream imageStream = new ByteArrayInputStream(byteArray);
             byte[] buff = new byte[UploadHostConst.PACKET_SIZE];
             int readCount = 0;
+            int loaded = 0;
 
             while((readCount = imageStream.read(buff)) != -1) {
                 dataDos.write(buff, 0, readCount);
@@ -128,6 +129,9 @@ public class ImageUploadTask extends AsyncTask<Void, Integer, Object[]> {
                 if (!send) {
                     Log.d("PC", "Packet send failed.");
                 }
+
+                loaded += readCount;
+                onProgressUpdate(loaded);
             }
 
             dataDos.flush();

@@ -12,4 +12,5 @@ public interface RequestURLs {
      */
     String GET_USER_INFO = DEFAULT_URL + "users/get-userinfo";      // UUID -> 사용자 정보
     String GET_PET_TYPES = DEFAULT_URL + "services/get-pettypes";   // 강아지 종을 가져온다.
+    String REGIST_MATCH_PET = DEFAULT_URL + "services/regist-pet";  // 팻 등록 실시
 }
