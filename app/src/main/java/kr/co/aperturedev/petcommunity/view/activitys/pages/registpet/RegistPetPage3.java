@@ -60,9 +60,20 @@ public class RegistPetPage3 extends PageSuper {
         public void onResponse(ResponseObject result) {
             JSONObject obj = result.getRespObject();
 
-            if(obj != null) {
-                Log.d("PC", obj.toString());
+            // 처리 결과
+            try {
+                if (obj.getInt("response-code") == 200) {
+                    Toast.makeText(getContext(), "매칭이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Http query error", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            } catch(Exception ex) {
+                Toast.makeText(getContext(), "Exception. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            getControl().finish();
         }
     }
 }
