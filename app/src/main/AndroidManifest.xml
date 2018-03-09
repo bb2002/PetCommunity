@@ -11,6 +11,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".modules.lib.kakao.GlobalApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -41,6 +42,9 @@
             android:name=".view.activitys.RegistPetActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
-    </application>
 
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+    </application>
 </manifest>

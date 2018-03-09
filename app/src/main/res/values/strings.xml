@@ -29,6 +29,7 @@
     <string name="registpet1_age">강아지 나이</string>
 
     <string name="registpet2_upload_file">강아지 사진을 업로드 하세요.</string>
+    <string name="registpet2_uploaded">업로드 되었습니다.</string>
 
     <string name="registpet3_title">주인님 전화번호를 입력해주세요.</string>
     <string name="registpet3_tel">전화번호를 입력하세요.</string>

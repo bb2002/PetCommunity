@@ -2,6 +2,7 @@ package kr.co.aperturedev.petcommunity.view.activitys.pages.registpet;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,6 +31,8 @@ import kr.co.aperturedev.petcommunity.modules.uploader.ImageUploadTask;
 import kr.co.aperturedev.petcommunity.modules.uploader.UploadHostConst;
 import kr.co.aperturedev.petcommunity.view.activitys.pages.PageActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.pages.PageSuper;
+import kr.co.aperturedev.petcommunity.view.dialogs.window.main.DialogManager;
+import kr.co.aperturedev.petcommunity.view.dialogs.window.main.clicklistener.OnYesClickListener;
 
 /**
  * Created by 5252b on 2018-03-06.
@@ -79,15 +82,28 @@ public class RegistPetPage2 extends PageSuper {
 
             // 업로드 된 이미지의 위치를 저장한다.
             uploadedUrl = link;
+
+            // 업로드 성공
+            modeSwitcher(false, false, true, true);
+            uploadMsg.setText(getContext().getString(R.string.registpet2_uploaded));    // 업로드 완료 메세지
         }
 
         @Override
         public void onUploadFailed(String reason) {
-            Toast.makeText(getContext(), "업로드에 실패했습니다.", Toast.LENGTH_SHORT).show();
+            DialogManager dm = new DialogManager(getContext());
+            dm.setTitle("업로드 실패");
+            dm.setOnYesButtonClickListener(new OnYesClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog) {
+                    dialog.dismiss();
+                }
+            }, "확인");
+            dm.setDescription("업로드 실패 : " + reason);
+            dm.show();
 
-            uploadBar.setVisibility(INVISIBLE);
-            uploadMsg.setVisibility(VISIBLE);
-            upload.setVisibility(VISIBLE);
+            // 업로드 실패
+            modeSwitcher(true, false, false, false);
+            uploadMsg.setText(reason);    // 업로드 완료 메세지
         }
 
         @Override
@@ -96,10 +112,23 @@ public class RegistPetPage2 extends PageSuper {
         }
     }
 
+    private void modeSwitcher(boolean uploadButtonView, boolean uploadBarView, boolean nextButtonView, boolean uploadImageView) {
+        this.upload.setVisibility(uploadButtonView ? VISIBLE : INVISIBLE);
+        this.uploadBar.setVisibility(uploadBarView ? VISIBLE : INVISIBLE);
+        this.nextButton.setVisibility(nextButtonView ? VISIBLE : INVISIBLE);
+        this.uploadView.setVisibility(uploadImageView ? VISIBLE :  INVISIBLE);
+    }
+
     /*
         이미지 로드 테스크
      */
     class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            uploadMsg.setText(getContext().getString(R.string.default_process));
+        }
+
         @Override
         protected void onPostExecute(Bitmap image) {
             super.onPostExecute(image);

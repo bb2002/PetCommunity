@@ -1,12 +1,16 @@
 package kr.co.aperturedev.petcommunity;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -17,6 +21,7 @@ import android.widget.ViewFlipper;
 import kr.co.aperturedev.petcommunity.view.activitys.DiaryActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.GetInformationActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.MatchingActivity;
+import kr.co.aperturedev.petcommunity.view.activitys.SocialLoginAcvtivity;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,6 +29,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
     ViewFlipper viewFlipper;
@@ -50,10 +57,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 매칭버튼누를때
-                Intent intent = new Intent(getApplicationContext(), MatchingActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), MatchingActivity.class);
+                //startActivity(intent);
+
+                /*
+                카카오 로그인 테스트
+                 */
+                Intent intent = new Intent(getApplicationContext(), SocialLoginAcvtivity.class);
                 startActivity(intent);
             }
         });
+
+
     }
 
     protected void goDiary(View v) {
