@@ -16,31 +16,35 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRRequest;
+import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRResponse;
+import kr.co.aperturedev.petcommunity.modules.http.bcr.ResponseCode;
+
 /**
  * Created by 5252b on 2018-03-02.
  * Http 요청 처리 라이브러리
  */
 
-public class RequestHttpTask extends AsyncTask<String, Void, ResponseObject> {
+public class RequestHttpTask extends AsyncTask<String, Void, BCRResponse> {
     String targetUrl = null;            // 타겟 URL
-    ArrayList<Object> args = null;      // 인자값
     Context context = null;             // 컨텍스트
     RequestHttpListener listener = null;    // 리스너
+    BCRRequest request = null;
 
-    public RequestHttpTask(String targetUrl, ArrayList<Object> args, Context context, RequestHttpListener listener) {
+    public RequestHttpTask(String targetUrl, BCRRequest request, Context context, RequestHttpListener listener) {
         this.targetUrl = targetUrl;
-        this.args = args;
         this.context = context;
         this.listener = listener;
+        this.request = (request == null ? new BCRRequest() : request);
     }
 
     @Override
-    protected void onPostExecute(ResponseObject respObj) {
+    protected void onPostExecute(BCRResponse respObj) {
         super.onPostExecute(respObj);
 
         // 처리 완료, 결과값을 보낸다.
         if(this.listener != null) {
-            this.listener.onResponse(respObj);
+            this.listener.onResponse(respObj.getResponseCode(), respObj);
         }
     }
 
@@ -50,26 +54,18 @@ public class RequestHttpTask extends AsyncTask<String, Void, ResponseObject> {
     }
 
     @Override
-    protected ResponseObject doInBackground(String... strings) {
-        ResponseObject respObj = new ResponseObject();
+    protected BCRResponse doInBackground(String... strings) {
+        BCRResponse respObj = null;
 
         // 네트워크 연결을 확인한다.
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if(cm.getActiveNetworkInfo() == null) {
             // 네트워크가 없을 경우
-            respObj.setRespCode(ResponseObject.ResponseCodes.NO_INTERNET);
+            respObj = new BCRResponse(ResponseCode.CLIENT_NO_ETHERNET, "This device is not connect internet.");
             return respObj;
         }
 
         try {
-            //  인자값을 만듭니다.
-            JSONObject data = new JSONObject();
-            JSONArray arr = new JSONArray();
-            for(int i = 0; i < args.size(); i ++) {
-                arr.put(args.get(i));
-            }
-            data.put("data", arr);
-
             // 요청을 보냅니다.
             URL url = new URL(targetUrl);
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
@@ -82,7 +78,7 @@ public class RequestHttpTask extends AsyncTask<String, Void, ResponseObject> {
 
             http.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
             StringBuffer buffer = new StringBuffer();
-            buffer.append("request").append("=").append(data.toString());
+            buffer.append(request.getScript());
 
             OutputStreamWriter outStream = new OutputStreamWriter(http.getOutputStream(), "UTF-8");
             PrintWriter writer = new PrintWriter(outStream);
@@ -97,22 +93,16 @@ public class RequestHttpTask extends AsyncTask<String, Void, ResponseObject> {
                 builder.append(str);
             }
 
-            // 응답을 받고, 처리 결과를 만든다.
-            Log.d("PC", builder.toString());
-            JSONObject returnObj = new JSONObject(builder.toString());
-
             /*
                 03 02 디버깅 전용 코드
              */
-            // Log.d("PC", returnObj.toString());
+             Log.d("PC", builder.toString());
 
-            respObj.setRespObject(returnObj);
-            respObj.setRespCode(ResponseObject.ResponseCodes.SUCCESS);
-
+            respObj = new BCRResponse(builder.toString());
             return respObj;
         } catch(Exception ex) {
             // 예외 발생시
-            respObj.setRespCode(ResponseObject.ResponseCodes.EXCEPTION);
+            respObj = new BCRResponse(ResponseCode.CLIENT_REQUEST_ERROR, "Request error.\n" + ex.getMessage());
             return respObj;
         }
     }

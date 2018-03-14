@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 /*
                 카카오 로그인 테스트
                  */
-                Intent intent = new Intent(getApplicationContext(), SocialLoginAcvtivity.class);
+                Intent intent = new Intent(getApplicationContext(), MatchingActivity.class);
                 startActivity(intent);
             }
         });
