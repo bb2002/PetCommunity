@@ -25,6 +25,7 @@ import com.kakao.usermgmt.response.model.UserProfile;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import kr.co.aperturedev.petcommunity.MainActivity;
 import kr.co.aperturedev.petcommunity.R;
 import kr.co.aperturedev.petcommunity.modules.http.RequestHttpListener;
 import kr.co.aperturedev.petcommunity.modules.http.RequestHttpTask;
@@ -197,10 +198,16 @@ public class UserRegisterActivity extends AppCompatActivity {
 
                 JSONObject resp = response.getData();
                 try {
-                    editor.putString("user-pin", resp.getString(""));
+                    editor.putString("user-pin", resp.getString("user-pin"));
+                    editor.commit();
                 } catch(JSONException jex) {
-
+                    Toast.makeText(getApplicationContext(), "Fatal error", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
             } else {
                 // 오류
                 this.dm.setDescription("Register failed.\n" + response.getResponseMsg());

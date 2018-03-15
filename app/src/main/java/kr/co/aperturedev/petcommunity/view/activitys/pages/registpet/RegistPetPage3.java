@@ -2,6 +2,7 @@ package kr.co.aperturedev.petcommunity.view.activitys.pages.registpet;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -58,7 +59,15 @@ public class RegistPetPage3 extends PageSuper {
             BCRRequest request = new BCRRequest();
             ArrayList<Object> args = getControl().args;
 
-            request.addArgs("admin-uuid", "testuuidtestuuid");
+            SharedPreferences prep = getContext().getSharedPreferences("PetCommunity", Context.MODE_PRIVATE);
+            String userPin = prep.getString("user-pin", null);
+
+            if(userPin == null) {
+                Toast.makeText(getContext(), "This application is not auth!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            request.addArgs("admin-pin", userPin);
             request.addArgs("admin-tel", telNumber.getText().toString());
             request.addArgs("pet-type", args.get(0));
             request.addArgs("pet-name", args.get(1));

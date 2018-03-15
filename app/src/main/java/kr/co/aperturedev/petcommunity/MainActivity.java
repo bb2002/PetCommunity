@@ -1,5 +1,6 @@
 package kr.co.aperturedev.petcommunity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -25,12 +26,22 @@ import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 
+import kr.co.aperturedev.petcommunity.modules.http.RequestHttpListener;
+import kr.co.aperturedev.petcommunity.modules.http.RequestHttpTask;
+import kr.co.aperturedev.petcommunity.modules.http.RequestURLs;
+import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRRequest;
+import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRResponse;
 import kr.co.aperturedev.petcommunity.view.activitys.DiaryActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.GetInformationActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.MatchingActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.SocialLoginAcvtivity;
 import kr.co.aperturedev.petcommunity.view.activitys.UserRegisterActivity;
+import kr.co.aperturedev.petcommunity.view.dialogs.progress.ProgressManager;
+import kr.co.aperturedev.petcommunity.view.dialogs.window.main.DialogManager;
+import kr.co.aperturedev.petcommunity.view.dialogs.window.main.clicklistener.OnYesClickListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -40,26 +51,17 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends AppCompatActivity {
-    ViewFlipper viewFlipper;
-    WebView webView;
-    TextView board1View;
-    Document board1;
-    Elements element1;
-    String titles1="";
-    int num;
-
+public class MainActivity extends AppCompatActivity implements RequestHttpListener {
     Button matchButton = null;
     MainActivity me = null;
+
+    DialogManager dm = null;    // 다이얼로그 매니저
+    ProgressManager pm = null;  // 프로그레스 매니저
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main2);
-        //뷰플리퍼실행
-        viewFlipper = (ViewFlipper)findViewById(R.id.bannerView);
-        viewFlipper.setFlipInterval(3000);
-        viewFlipper.startFlipping(); //뷰플리퍼3초간격슬라이드
 
         this.me = this;
         this.matchButton = findViewById(R.id.dogMatching);
@@ -69,22 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 // 매칭버튼누를때
                 Intent intent = new Intent(getApplicationContext(), MatchingActivity.class);
                 startActivity(intent);
-
-//                UserManagement.requestLogout(new LogoutResponseCallback() {
-//                    @Override
-//                    public void onCompleteLogout() {
-//
-//                    }
-//                });
             }
         });
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
         /*
-            로그인 되어 있는지 확인한다.
+            자동 로그인 한다.
          */
         UserManagement.requestMe(new MeResponseCallback() {
             @Override
@@ -109,47 +100,68 @@ public class MainActivity extends AppCompatActivity {
                     이 계정이 로그인 되어 있는지 확인한다.
                  */
                 SharedPreferences prep = getSharedPreferences("PetCommunity", MODE_PRIVATE);
-                boolean isRegist = prep.getBoolean("is-registed", false);
-                if(!isRegist) {
+                String pin = prep.getString("user-pin", null);
+                if(pin == null) {
                     // 빈 깡통 계정.
                     // 회원가입 화면으로 이동한다.
                     Intent intent = new Intent(me, UserRegisterActivity.class);
-                    intent.putExtra("user-nickname", profile.getNickname());
-                    intent.putExtra("user-profile", profile.getProfileImagePath());
-                    intent.putExtra("user-id", profile.getId());
                     startActivity(intent);  // 회원가입 화면을 띄운다.
 
                     finish();
+                } else {
+                    // 해당 계정이 로그인 되어 있는지 확인
+
+                    BCRRequest req = new BCRRequest();
+                    req.addArgs("user-pin", pin);
+                    RequestHttpTask loginTask = new RequestHttpTask(RequestURLs.LOGIN_SERVICE, req, getApplicationContext(), me);
+                    loginTask.execute();
                 }
             }
         });
+
+        this.dm = new DialogManager(this);
+        this.dm.setTitle("Fatal error");
+        this.dm.setOnYesButtonClickListener(new OnYesClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog) {
+                dialog.dismiss();
+                finish();
+            }
+        }, "CLOSE");
     }
 
-    protected void goDiary(View v) {
-        //다이어리버튼누를때
-        Intent intent = new Intent(this, DiaryActivity.class);
-        startActivity(intent);
-        finish();//다이어리로이동
-    }
-    protected void goRecommend(View v) {
-        //추천버튼누를때
-        Intent intent = new Intent(this, GetInformationActivity.class);
-        startActivity(intent);
-        finish();//추천으로이동
-    }
-    protected void banner1Click(View v) {
-        //첫배너클릭
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.goldntree.co.kr"));
-        startActivity(intent);//웹띄우기
-    }
-    protected void banner2Click(View v) {
-        //둘째배너클릭
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.goldntree.co.kr/board/product/list.html?board_no=6"));
-        startActivity(intent);//웹띄우기
-    }
-    protected void banner3Click(View v) {
-        //세번째배너클릭
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.goldntree.co.kr/board/free/list.html?board_no=1"));
-        startActivity(intent);//웹띄우기
+    @Override
+    public void onResponse(int responseCode, BCRResponse response) {
+        // 자동 로그인에 대한 결과
+        if(responseCode == 200) {
+            JSONObject obj = response.getData();
+
+            try {
+                boolean isLogin = obj.getBoolean("is-login");
+
+                if(isLogin) {
+                    // 자동 로그인 성공
+
+                } else {
+                    // 자동 로그인 오류
+                    dm.setDescription("Auth error. Please login.");
+                    dm.show();
+
+                    SharedPreferences.Editor editor = getSharedPreferences("PetCommunity", MODE_PRIVATE).edit();
+                    editor.putString("user-pin", null);
+                    editor.commit();    // PIN 초기화
+                }
+            } catch(JSONException jex) {
+                jex.printStackTrace();
+                dm.setDescription("Client error\n" + jex.getMessage());
+                dm.show();
+            }
+        } else {
+            // 로그인 실패
+            dm.setDescription("자동 로그인에 실패했습니다.\n" + response);
+            dm.show();
+        }
     }
 }
+
+
