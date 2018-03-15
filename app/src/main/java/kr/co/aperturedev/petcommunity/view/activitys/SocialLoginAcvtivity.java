@@ -24,28 +24,15 @@ import kr.co.aperturedev.petcommunity.modules.lib.kakao.SessionCallback;
 
 public class SocialLoginAcvtivity extends AppCompatActivity {
     SessionCallback callback = null;
-    Button logout = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sociallogin);
+        getSupportActionBar().hide();
 
         callback = new SessionCallback(this);
         Session.getCurrentSession().addCallback(callback);
-
-        logout = findViewById(R.id.socail_logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UserManagement.requestLogout(new LogoutResponseCallback() {
-                    @Override
-                    public void onCompleteLogout() {
-                        Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
     }
 
     @Override

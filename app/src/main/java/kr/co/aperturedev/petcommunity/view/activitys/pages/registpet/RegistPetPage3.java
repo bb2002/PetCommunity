@@ -77,6 +77,7 @@ public class RegistPetPage3 extends PageSuper {
             if(responseCode == ResponseCode.OK) {
                 // 처리 성공
                 Toast.makeText(getContext(), "등록되었습니다.", Toast.LENGTH_SHORT).show();
+                getControl().finish();
             } else {
                 // 처리 실패
                 DialogManager dm = new DialogManager(getContext());

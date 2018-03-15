@@ -1,6 +1,7 @@
 package kr.co.aperturedev.petcommunity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -18,10 +19,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
+import com.kakao.usermgmt.callback.MeResponseCallback;
+import com.kakao.usermgmt.response.model.UserProfile;
+
 import kr.co.aperturedev.petcommunity.view.activitys.DiaryActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.GetInformationActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.MatchingActivity;
 import kr.co.aperturedev.petcommunity.view.activitys.SocialLoginAcvtivity;
+import kr.co.aperturedev.petcommunity.view.activitys.UserRegisterActivity;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -42,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     int num;
 
     Button matchButton = null;
+    MainActivity me = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,23 +61,68 @@ public class MainActivity extends AppCompatActivity {
         viewFlipper.setFlipInterval(3000);
         viewFlipper.startFlipping(); //뷰플리퍼3초간격슬라이드
 
+        this.me = this;
         this.matchButton = findViewById(R.id.dogMatching);
         this.matchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 매칭버튼누를때
-                //Intent intent = new Intent(getApplicationContext(), MatchingActivity.class);
-                //startActivity(intent);
-
-                /*
-                카카오 로그인 테스트
-                 */
                 Intent intent = new Intent(getApplicationContext(), MatchingActivity.class);
                 startActivity(intent);
+
+//                UserManagement.requestLogout(new LogoutResponseCallback() {
+//                    @Override
+//                    public void onCompleteLogout() {
+//
+//                    }
+//                });
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        /*
+            로그인 되어 있는지 확인한다.
+         */
+        UserManagement.requestMe(new MeResponseCallback() {
+            @Override
+            public void onSessionClosed(ErrorResult errorResult) {
+                /*
+                    세션이 없다. 소셜로그인 화면으로 이동
+                 */
+                Intent intent = new Intent(getApplicationContext(), SocialLoginAcvtivity.class);
+                startActivity(intent);
+                finish();
+            }
 
+            @Override
+            public void onNotSignedUp() {
+                Log.d("PC", "NO");
+            }
+
+            @Override
+            public void onSuccess(UserProfile profile) {
+                /*
+                    로그인 성공!
+                    이 계정이 로그인 되어 있는지 확인한다.
+                 */
+                SharedPreferences prep = getSharedPreferences("PetCommunity", MODE_PRIVATE);
+                boolean isRegist = prep.getBoolean("is-registed", false);
+                if(!isRegist) {
+                    // 빈 깡통 계정.
+                    // 회원가입 화면으로 이동한다.
+                    Intent intent = new Intent(me, UserRegisterActivity.class);
+                    intent.putExtra("user-nickname", profile.getNickname());
+                    intent.putExtra("user-profile", profile.getProfileImagePath());
+                    intent.putExtra("user-id", profile.getId());
+                    startActivity(intent);  // 회원가입 화면을 띄운다.
+
+                    finish();
+                }
+            }
+        });
     }
 
     protected void goDiary(View v) {
