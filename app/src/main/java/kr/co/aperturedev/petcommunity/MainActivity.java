@@ -74,6 +74,17 @@ public class MainActivity extends AppCompatActivity implements RequestHttpListen
             }
         });
 
+        this.dm = new DialogManager(this);
+        this.dm.setTitle("Fatal error");
+        this.dm.setOnYesButtonClickListener(new OnYesClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog) {
+                dialog.dismiss();
+                finish();
+            }
+        }, "CLOSE");
+        this.pm = new ProgressManager(this);
+
         /*
             자동 로그인 한다.
          */
@@ -110,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements RequestHttpListen
                     finish();
                 } else {
                     // 해당 계정이 로그인 되어 있는지 확인
+                    pm.setMessage(getString(R.string.default_process));
+                    pm.enable();
 
                     BCRRequest req = new BCRRequest();
                     req.addArgs("user-pin", pin);
@@ -118,20 +131,12 @@ public class MainActivity extends AppCompatActivity implements RequestHttpListen
                 }
             }
         });
-
-        this.dm = new DialogManager(this);
-        this.dm.setTitle("Fatal error");
-        this.dm.setOnYesButtonClickListener(new OnYesClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog) {
-                dialog.dismiss();
-                finish();
-            }
-        }, "CLOSE");
     }
 
     @Override
     public void onResponse(int responseCode, BCRResponse response) {
+        pm.disable();
+
         // 자동 로그인에 대한 결과
         if(responseCode == 200) {
             JSONObject obj = response.getData();
@@ -158,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements RequestHttpListen
             }
         } else {
             // 로그인 실패
-            dm.setDescription("자동 로그인에 실패했습니다.\n" + response);
+            dm.setDescription("자동 로그인에 실패했습니다.\n" + response.getResponseMsg());
             dm.show();
         }
     }
