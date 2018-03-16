@@ -1,4 +1,4 @@
-package kr.co.aperturedev.petcommunity.view.activitys;
+package kr.co.aperturedev.petcommunity.view.activitys.login;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

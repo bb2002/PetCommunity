@@ -3,26 +3,14 @@ package kr.co.aperturedev.petcommunity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.ViewFlipper;
 
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
-import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 
@@ -31,25 +19,15 @@ import kr.co.aperturedev.petcommunity.modules.http.RequestHttpTask;
 import kr.co.aperturedev.petcommunity.modules.http.RequestURLs;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRRequest;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRResponse;
-import kr.co.aperturedev.petcommunity.view.activitys.DiaryActivity;
-import kr.co.aperturedev.petcommunity.view.activitys.GetInformationActivity;
-import kr.co.aperturedev.petcommunity.view.activitys.MatchingActivity;
-import kr.co.aperturedev.petcommunity.view.activitys.SocialLoginAcvtivity;
-import kr.co.aperturedev.petcommunity.view.activitys.UserRegisterActivity;
+import kr.co.aperturedev.petcommunity.view.activitys.services.MatchingActivity;
+import kr.co.aperturedev.petcommunity.view.activitys.login.SocialLoginAcvtivity;
+import kr.co.aperturedev.petcommunity.view.activitys.login.UserRegisterActivity;
 import kr.co.aperturedev.petcommunity.view.dialogs.progress.ProgressManager;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.main.DialogManager;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.main.clicklistener.OnYesClickListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements RequestHttpListener {
     Button matchButton = null;

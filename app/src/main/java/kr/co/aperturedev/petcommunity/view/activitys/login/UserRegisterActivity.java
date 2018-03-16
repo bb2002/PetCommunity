@@ -1,4 +1,4 @@
-package kr.co.aperturedev.petcommunity.view.activitys;
+package kr.co.aperturedev.petcommunity.view.activitys.login;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,11 +27,14 @@ import org.json.JSONObject;
 
 import kr.co.aperturedev.petcommunity.MainActivity;
 import kr.co.aperturedev.petcommunity.R;
+import kr.co.aperturedev.petcommunity.modules.constant.QueryIDs;
 import kr.co.aperturedev.petcommunity.modules.http.RequestHttpListener;
 import kr.co.aperturedev.petcommunity.modules.http.RequestHttpTask;
 import kr.co.aperturedev.petcommunity.modules.http.RequestURLs;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRRequest;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRResponse;
+import kr.co.aperturedev.petcommunity.modules.imager.UploadHostConst;
+import kr.co.aperturedev.petcommunity.view.activitys.services.UploadImageActivity;
 import kr.co.aperturedev.petcommunity.view.dialogs.progress.ProgressManager;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.main.DialogManager;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.main.clicklistener.OnYesClickListener;
@@ -116,9 +119,25 @@ public class UserRegisterActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == QueryIDs.UPLOAD_IMAGE_RESULT) {
+            // 이미지 업로드 창이 닫혔다.
+
+            if(resultCode == RESULT_OK) {
+                String fileName = data.getStringExtra("file-name");
+                profileImage = UploadHostConst.CDN_URL + fileName;
+
+                uploadProfile.setText(R.string.register_uploaded_profile);
+            }
+        }
+    }
+
     /*
-        텍스트 에디터
-     */
+            텍스트 에디터 리스너
+         */
     class EditTextWatcher implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -142,6 +161,7 @@ public class UserRegisterActivity extends AppCompatActivity {
     class ButtonClickHandler implements View.OnClickListener, RequestHttpListener {
         ProgressManager pm = null;
         DialogManager dm = null;
+
         public ButtonClickHandler(Context context) {
             this.pm = new ProgressManager(context);
             this.dm = new DialogManager(context);
@@ -158,6 +178,8 @@ public class UserRegisterActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.form_profile_upload:
+                    Intent intent = new Intent(getApplicationContext(), UploadImageActivity.class);
+                    startActivityForResult(intent, QueryIDs.UPLOAD_IMAGE_RESULT);
                     break;
                 case R.id.user_regist_ok:
                     // 데이터를 다시 확인합니다

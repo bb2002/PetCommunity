@@ -1,10 +1,8 @@
 package kr.co.aperturedev.petcommunity.modules.lib.kakao;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.kakao.auth.ISessionCallback;
@@ -24,7 +22,7 @@ import kr.co.aperturedev.petcommunity.modules.http.RequestHttpTask;
 import kr.co.aperturedev.petcommunity.modules.http.RequestURLs;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRRequest;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRResponse;
-import kr.co.aperturedev.petcommunity.view.activitys.UserRegisterActivity;
+import kr.co.aperturedev.petcommunity.view.activitys.login.UserRegisterActivity;
 import kr.co.aperturedev.petcommunity.view.dialogs.progress.ProgressManager;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.main.DialogManager;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.main.clicklistener.OnYesClickListener;
@@ -65,7 +63,7 @@ public class SessionCallback implements ISessionCallback, RequestHttpListener {
 
             @Override
             public void onNotSignedUp() {
-
+                Toast.makeText(context, "Failed to login", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -85,6 +83,7 @@ public class SessionCallback implements ISessionCallback, RequestHttpListener {
 
     @Override
     public void onSessionOpenFailed(KakaoException exception) {
+
     }
 
     @Override

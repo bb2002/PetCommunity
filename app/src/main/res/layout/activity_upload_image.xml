@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+    <include
+        layout="@layout/layout_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:id="@+id/upload_header"/>
+
+    <TextView
+        android:id="@+id/upload_status_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="@string/upload_plz_select"
+        android:textColor="@color/default_white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/upload_button_container"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/cancel_button"
+            android:text="@string/upload_image_cancel"
+            android:background="@color/default_white"
+            android:textColor="#919191"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="2"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/upload_button"
+            android:text="@string/upload_image"
+            android:background="@color/w_green"
+            android:textColor="#168924"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/upload_image_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/upload_button_container"
+        android:layout_below="@id/upload_header"
+        android:layout_margin="16dp"
+        android:scaleType="centerInside" />
+
+
+</RelativeLayout>

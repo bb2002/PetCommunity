@@ -12,4 +12,5 @@ public interface QueryIDs {
 
     // 퍼미션 요청
     int REQUEST_PERMISSION_RESULT = 0x3EA;
+    int UPLOAD_IMAGE_RESULT = 0x3EB;
 }

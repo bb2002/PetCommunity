@@ -1,10 +1,9 @@
-package kr.co.aperturedev.petcommunity.view.activitys.pages.registpet;
+package kr.co.aperturedev.petcommunity.view.fragments.pages.registpet;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +23,8 @@ import kr.co.aperturedev.petcommunity.modules.http.RequestURLs;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRResponse;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.ResponseCode;
 import kr.co.aperturedev.petcommunity.modules.obj.PetTypeObject;
-import kr.co.aperturedev.petcommunity.view.activitys.pages.PageActivity;
-import kr.co.aperturedev.petcommunity.view.activitys.pages.PageSuper;
+import kr.co.aperturedev.petcommunity.view.fragments.pages.PageActivity;
+import kr.co.aperturedev.petcommunity.view.fragments.pages.PageSuper;
 import kr.co.aperturedev.petcommunity.view.dialogs.progress.ProgressManager;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.custom.SelectPetTypeDialog;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.main.DialogManager;

@@ -74,16 +74,6 @@
             android:gravity="center"
             android:textStyle="bold"
             android:layout_below="@id/upload_image_button"/>
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/upload_progress"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:max="100"
-            android:visibility="invisible"
-            android:layout_below="@id/upload_image_button"/>
     </RelativeLayout>
 
     <Button

@@ -22,7 +22,7 @@
     <string name="default_http_error">데이터 요청에 실패했습니다.</string>
     <string name="default_exec_error">Client error.</string>
     <string name="default_nickname">닉네임</string>
-    <string name="defalut_name">이름</string>
+    <string name="defalut_name">성함</string>
 
     <!-- Regist Pet Activity -->
     <string name="registpet_activity_header1">애견 정보 입력</string>
@@ -49,4 +49,15 @@
     <string name="register_title">애견 커뮤니티 가입을 환영합니다.</string>
     <string name="register_upload_profile">프로필 사진 업로드</string>
     <string name="register_kakaologin_failed">카카오 로그인 데이터를 연동 할 수 없습니다.\n앱을 닫고 다시 시도하십시오.</string>
+    <string name="register_uploaded_profile">프로필 사진이 업로드 되었습니다.</string>
+
+    <!-- Upload Image Activity -->
+    <string name="upload_image_cancel">취소</string>
+    <string name="upload_image">이미지 업로드</string>
+    <string name="upload_plz_select">이미지를 선택하세요.</string>
+    <string name="upload_now_loading">Uploading...</string>
+    <string name="upload_now_loading_kr">업로드 중 입니다...</string>
+    <string name="upload_check_uploaded">무결점 검사 중...</string>
+    <string name="upload_retry">다시 업로드</string>
+    <string name="upload_success_msg">업로드 되었습니다.\n완료하려면 뒤로가기를 누르세요.</string>
 </resources>

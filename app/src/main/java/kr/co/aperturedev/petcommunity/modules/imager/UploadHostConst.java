@@ -1,4 +1,4 @@
-package kr.co.aperturedev.petcommunity.modules.uploader;
+package kr.co.aperturedev.petcommunity.modules.imager;
 
 /**
  * Created by 5252b on 2018-03-06.

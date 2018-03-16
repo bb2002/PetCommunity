@@ -27,22 +27,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activitys.GetInformationActivity"
+            android:name=".view.activitys.services.MatchingActivity"
             android:exported="true" />
         <activity
-            android:name=".view.activitys.MatchingActivity"
+            android:name=".view.activitys.login.SocialLoginAcvtivity"
             android:exported="true" />
         <activity
-            android:name=".view.activitys.SocialLoginAcvtivity"
-            android:exported="true" />
-        <activity
-            android:name=".view.activitys.DiaryActivity"
-            android:exported="true" />
-        <activity
-            android:name=".view.activitys.RegistPetActivity"
+            android:name=".view.activitys.services.RegistPetActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
-        <activity android:name=".view.activitys.UserRegisterActivity"
+        <activity android:name=".view.activitys.login.UserRegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.activitys.services.UploadImageActivity"
             android:screenOrientation="portrait" />
 
         <meta-data

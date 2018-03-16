@@ -11,5 +11,7 @@
     <color name="matching_blue_color">#2980b9</color>
     <color name="default_gray">#bdc3c7</color>
 
+    <color name="w_green">#5df9aa</color>
+
     <color name="matching_submain_color">#34495e</color>
 </resources>

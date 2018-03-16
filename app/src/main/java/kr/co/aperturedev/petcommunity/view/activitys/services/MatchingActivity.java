@@ -1,4 +1,4 @@
-package kr.co.aperturedev.petcommunity.view.activitys;
+package kr.co.aperturedev.petcommunity.view.activitys.services;
 
 import android.content.Context;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package kr.co.aperturedev.petcommunity.view.activitys.pages.registpet;
+package kr.co.aperturedev.petcommunity.view.fragments.pages.registpet;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -19,8 +17,8 @@ import kr.co.aperturedev.petcommunity.modules.http.RequestURLs;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRRequest;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.BCRResponse;
 import kr.co.aperturedev.petcommunity.modules.http.bcr.ResponseCode;
-import kr.co.aperturedev.petcommunity.view.activitys.pages.PageActivity;
-import kr.co.aperturedev.petcommunity.view.activitys.pages.PageSuper;
+import kr.co.aperturedev.petcommunity.view.fragments.pages.PageActivity;
+import kr.co.aperturedev.petcommunity.view.fragments.pages.PageSuper;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.main.DialogManager;
 import kr.co.aperturedev.petcommunity.view.dialogs.window.main.clicklistener.OnYesClickListener;
 

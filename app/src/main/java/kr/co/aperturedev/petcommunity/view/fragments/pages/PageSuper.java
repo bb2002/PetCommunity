@@ -1,4 +1,4 @@
-package kr.co.aperturedev.petcommunity.view.activitys.pages;
+package kr.co.aperturedev.petcommunity.view.fragments.pages;
 
 import android.content.Context;
 import android.content.Intent;

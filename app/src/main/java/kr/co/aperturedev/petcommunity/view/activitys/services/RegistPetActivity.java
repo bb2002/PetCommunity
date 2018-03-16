@@ -1,17 +1,16 @@
-package kr.co.aperturedev.petcommunity.view.activitys;
+package kr.co.aperturedev.petcommunity.view.activitys.services;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import kr.co.aperturedev.petcommunity.R;
-import kr.co.aperturedev.petcommunity.view.activitys.pages.PageActivity;
-import kr.co.aperturedev.petcommunity.view.activitys.pages.PageSuper;
-import kr.co.aperturedev.petcommunity.view.activitys.pages.registpet.RegistPetPage1;
+import kr.co.aperturedev.petcommunity.view.fragments.pages.PageActivity;
+import kr.co.aperturedev.petcommunity.view.fragments.pages.PageSuper;
+import kr.co.aperturedev.petcommunity.view.fragments.pages.registpet.RegistPetPage1;
 
 /**
  * Copyright(c) 2018 Saint software All rights reserved.
