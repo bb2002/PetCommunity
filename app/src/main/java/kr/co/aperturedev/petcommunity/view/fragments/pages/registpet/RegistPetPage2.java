@@ -1,39 +1,18 @@
 package kr.co.aperturedev.petcommunity.view.fragments.pages.registpet;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import kr.co.aperturedev.petcommunity.R;
 import kr.co.aperturedev.petcommunity.modules.constant.QueryIDs;
-import kr.co.aperturedev.petcommunity.modules.lib.PermissionHelper;
-import kr.co.aperturedev.petcommunity.modules.imager.ImageUploadListener;
-import kr.co.aperturedev.petcommunity.modules.imager.ImageUploadTask;
-import kr.co.aperturedev.petcommunity.modules.imager.UploadHostConst;
 import kr.co.aperturedev.petcommunity.view.activitys.services.UploadImageActivity;
-import kr.co.aperturedev.petcommunity.view.fragments.pages.PageActivity;
-import kr.co.aperturedev.petcommunity.view.fragments.pages.PageSuper;
-import kr.co.aperturedev.petcommunity.view.dialogs.window.main.DialogManager;
-import kr.co.aperturedev.petcommunity.view.dialogs.window.main.clicklistener.OnYesClickListener;
+import kr.co.aperturedev.petcommunity.view.fragments.PageActivity;
+import kr.co.aperturedev.petcommunity.view.fragments.PageSuper;
 
 /**
  * Created by 5252b on 2018-03-06.

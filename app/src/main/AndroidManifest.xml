@@ -40,6 +40,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".view.activitys.services.UploadImageActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".view.activitys.services.MatchingFilterActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

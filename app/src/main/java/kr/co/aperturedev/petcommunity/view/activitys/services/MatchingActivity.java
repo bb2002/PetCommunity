@@ -22,6 +22,8 @@ public class MatchingActivity extends AppCompatActivity {
     Button startMatching = null;    // 매칭 시작 버튼
     Button registMyPet = null;      // 내 팻 등록 버튼
 
+    ProgressManager progressMgr = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,29 +45,27 @@ public class MatchingActivity extends AppCompatActivity {
         버튼 핸들러
      */
     class ButtonClickHandler implements View.OnClickListener {
-        ProgressManager progressMgr = null;
-
         public ButtonClickHandler(Context context) {
-            this.progressMgr = new ProgressManager(context);
+            progressMgr = new ProgressManager(context);
         }
 
         @Override
         public void onClick(View v) {
+            Intent intent = null;
+
             switch(v.getId()) {
                 case R.id.matching_match_pet:
                     // 애견 매칭을 선택
-                    this.progressMgr.setMessage(getString(R.string.default_now_matching));
-                    this.progressMgr.enable();
-
-                    // 매칭 테스크 구동
-
+                    intent = new Intent(getApplicationContext(), MatchingFilterActivity.class);
                     break;
                 case R.id.matching_regist_pet:
                     // 내 팻 등록 버튼
-                    Intent intent = new Intent(getApplicationContext(), RegistPetActivity.class);
-                    startActivity(intent);
+                    intent = new Intent(getApplicationContext(), RegistPetActivity.class);
                     break;
+                default: return;
             }
+
+            startActivity(intent);
         }
     }
 }

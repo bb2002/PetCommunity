@@ -1,4 +1,4 @@
-package kr.co.aperturedev.petcommunity.view.fragments.pages;
+package kr.co.aperturedev.petcommunity.view.fragments;
 
 import android.support.v7.app.AppCompatActivity;
 

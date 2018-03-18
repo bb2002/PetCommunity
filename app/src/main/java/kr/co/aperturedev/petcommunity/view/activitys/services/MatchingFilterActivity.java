@@ -10,14 +10,15 @@ import android.widget.FrameLayout;
 import kr.co.aperturedev.petcommunity.R;
 import kr.co.aperturedev.petcommunity.view.fragments.PageActivity;
 import kr.co.aperturedev.petcommunity.view.fragments.PageSuper;
+import kr.co.aperturedev.petcommunity.view.fragments.pages.matching.SettingFilterFragment;
 import kr.co.aperturedev.petcommunity.view.fragments.pages.registpet.RegistPetPage1;
 
 /**
  * Copyright(c) 2018 Saint software All rights reserved.
- * 애견을 등록하는 페이지
+ * 애견 매칭 페이지
  */
 
-public class RegistPetActivity extends PageActivity {
+public class MatchingFilterActivity extends PageActivity {
     FrameLayout contentView = null;     // 컨텐츠 뷰
     Animation anime = null;             // 화면 전환시 사용될 애니
     PageSuper nowPage = null;           // 현재 페이지
@@ -25,15 +26,15 @@ public class RegistPetActivity extends PageActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regist_matching);
+        setContentView(R.layout.activity_start_matching);
         getSupportActionBar().hide();
 
         // 개체 찾기
-        this.contentView = findViewById(R.id.registmatch_container);
+        this.contentView = findViewById(R.id.matching_content);
         this.anime = AnimationUtils.loadAnimation(this, R.anim.view_move_right);
 
         // 페이지 열기
-        switchPage(new RegistPetPage1(this, this));
+        switchPage(new SettingFilterFragment(this, this));
     }
 
     @Override
