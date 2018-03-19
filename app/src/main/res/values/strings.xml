@@ -64,4 +64,9 @@
     <!-- Matching filter Activity -->
     <string name="filter_title">애견 매칭을 시작합니다.\n강아지 종류를 선택하고 시작 버튼은 누르세요.</string>
     <string name="filter_pettype_title">강아지 종류를 선택하세요.</string>
+
+    <!-- Matched Activity -->
+    <string name="matched_title">MATCHING SUCCESS</string>
+    <string name="matched_close">취소</string>
+    <string name="matched_apply">매칭 승인</string>
 </resources>

@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tmp_logcat"
-        android:layout_width="wrap_content"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="219dp"
-        android:text="TextView" />
+        android:id="@+id/matched_button_container"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:id="@+id/matched_cancel"
+            android:layout_weight="1"
+            android:text="@string/matched_close"
+            android:textColor="@color/default_white"
+            android:background="@color/default_red"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="@color/matching_green_color"
+            android:textColor="@color/default_white"
+            android:layout_weight="2"
+            android:text="@string/matched_apply"
+            android:id="@+id/matched_apply"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/matched_status_view"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_margin="64dp"
+        android:layout_above="@id/matched_button_container">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/matched_pet_name"
+            android:textColor="@color/default_white"
+            android:textSize="15sp"
+            android:text="null"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/default_white"
+            android:textSize="15sp"
+            android:text=" / "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/default_white"
+            android:textSize="15sp"
+            android:id="@+id/matched_pet_age"
+            android:text="0"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/matched_status_view"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/matchted_title"
+            android:text="@string/matched_title"
+            android:textColor="@color/w_green"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:id="@+id/matched_pet_preview"
+            android:src="@drawable/ic_launcher_foreground"
+            />
+    </LinearLayout>
 </RelativeLayout>
